@@ -110,7 +110,6 @@ class Muelles_Stats(tk.Frame):
         tk.Button(self, text="Estadísticas", background="#CECECE",
                   command=lambda: master.switch_frame(Inicio)).grid(row=5, column=2, padx=5, pady=5)
 
-
 if __name__ == "__main__":
     app = SampleApp()
     app.title("Control de Producción")

@@ -1,5 +1,8 @@
 import tkinter as tk
 import funciones
+import datos
+
+seleccion = []
 
 class SampleApp(tk.Tk):
     def __init__(self):
@@ -43,7 +46,7 @@ class Muelles(tk.Frame):
                   font=('Helvetica', 18, "bold")).grid(row=0, column=0, padx=5, pady=5)
         #RNM68
         tk.Label(self, text="RNM68").grid(row=1, column=0)
-        tk.Button(self, text="+1", background="#CECECE", height=2, width=2).grid(row=1, column=1, padx=5, pady=5)
+        tk.Button(self, text="+1", background="#CECECE", height=2, width=2, command=datos.insertar_RNM68_2022).grid(row=1, column=1, padx=5, pady=5)
         #RNH68
         tk.Label(self, text="RNH68").grid(row=2, column=0)
         tk.Button(self, text="+1", background="#CECECE", height=2, width=2).grid(row=2, column=1, padx=5, pady=5)        
@@ -88,10 +91,11 @@ class Estadisticas(tk.Frame):
 
 class Muelles_Stats(tk.Frame):
     def __init__(self, master):
-        tk.Frame.__init__(self, master)
-        
+
         muelle_selec = tk.IntVar()
         año_selec = tk.IntVar()
+
+        tk.Frame.__init__(self, master)
 
         tk.Label(self, text="Mecánicos").grid(row=0, column=0, padx=5, pady=5)
         tk.Radiobutton(self, text=("RNM68"), value=1, variable=muelle_selec).grid(row=0, column=1, padx=5, pady=5)
@@ -108,7 +112,12 @@ class Muelles_Stats(tk.Frame):
         tk.Button(self, text="Volver a Inicio", background="#CECECE",
                   command=lambda: master.switch_frame(Inicio)).grid(row=5, column=1, padx=5, pady=5)
         tk.Button(self, text="Estadísticas", background="#CECECE",
-                  command=lambda: master.switch_frame(Inicio)).grid(row=5, column=2, padx=5, pady=5)
+                  command=funciones.muestra).grid(row=5, column=2, padx=5, pady=5)
+
+        seleccion.append(muelle_selec.get())
+        seleccion.append(año_selec.get())
+
+        print (seleccion)
 
 if __name__ == "__main__":
     app = SampleApp()

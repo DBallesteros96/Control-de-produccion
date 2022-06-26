@@ -14,7 +14,7 @@ def crear_tabla():
     con.commit()
     con.close()
 
-def obtener():
+def obtener_RNM68_2022():
     con = sqlite3.connect(".\datos\RNM68_2022")
     cur = con.cursor()
     cur.execute("""SELECT Cantidad FROM RNM68_2022 WHERE Mes = {}""".format(funciones.mes))
@@ -23,13 +23,14 @@ def obtener():
     con.close()
     print (cantidad)
 
-def insertar():
+def insertar_RNM68_2022():
     con = sqlite3.connect(".\datos\RNM68_2022")
     cur = con.cursor()
-    cur.execute("""UPDATE RNM68_2022 SET Cantidad = {} WHERE Mes = {}""".format(7, funciones.mes)) #Cambiar valor por variable.
+    cur.execute("""SELECT Cantidad FROM RNM68_2022 WHERE Mes = {}""".format(funciones.mes))
+    cantidad = cur.fetchall()
+    cantidad = int(cantidad[0][0])
+    cantidad += 1
+    cur.execute("""UPDATE RNM68_2022 SET Cantidad = {} WHERE Mes = {}""".format(cantidad, funciones.mes))
     con.commit()
     con.close()
 
-
-obtener()
-#crear_tabla()

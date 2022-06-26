@@ -1,18 +1,18 @@
 import funciones
 import sqlite3
 
-
 #Cambiar las conexiones a la base de datos por un @decorador.
 
 def crear_tabla():
     """Ejecutar una vez para la creación"""
-    con = sqlite3.connect(".\datos\RNM68_2022")
+    con = sqlite3.connect(".\datos\RNH68_2022")
     cur = con.cursor()
-    cur.execute("""CREATE TABLE RNM68_2022 ('Mes' int, 'Cantidad' int)""")
+    cur.execute("""CREATE TABLE RNH68_2022 ('Mes' int, 'Cantidad' int)""")
     for x in range (1, 13):
-        cur.execute("""INSERT INTO RNM68_2022 VALUES ({}, 0)""".format(x))
+        cur.execute("""INSERT INTO RNH68_2022 VALUES ({}, 0)""".format(x))
     con.commit()
     con.close()
+
 
 def obtener_RNM68_2022():
     con = sqlite3.connect(".\datos\RNM68_2022")
@@ -21,7 +21,6 @@ def obtener_RNM68_2022():
     cantidad = cur.fetchall()
     cantidad = int(cantidad[0][0])
     con.close()
-    print (cantidad)
 
 def insertar_RNM68_2022():
     con = sqlite3.connect(".\datos\RNM68_2022")

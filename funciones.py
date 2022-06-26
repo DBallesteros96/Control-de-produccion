@@ -24,24 +24,34 @@ def incrementa(tipo, cantidad):
     #actualizar la base de datos
     pass
 
-def muestra ():
+def hola():
+    print(Interfaz.Muelles_Stats.muelle_selec)
+    print ("Texto de prueba")
+
+def muestra (tipo_selec, año_selec):
     """Muestra estadísticas de la pieza seleccionada en el año seleccionado."""
     grafx = [1,2,3,4,5,6,7,8,9,10,11,12]
     grafy = []
 
-    if Interfaz.seleccion[0] == 1:
-        muelle = "RNM68"
-    elif Interfaz.seleccion[0] == 2:
-        muelle = "RNH68"
-    elif Interfaz.seleccion[0] == 3:
-        muelle = "RNH30"
-    elif Interfaz.seleccion[0] == 4:
-        muelle = "RNH25"
 
-    if Interfaz.seleccion[1] == 1:
+    if tipo_selec == 1:
+        muelle = "RNM68"
+    elif tipo_selec == 2:
+        muelle = "RNH68"
+    elif tipo_selec == 3:
+        muelle = "RNH30"
+    elif tipo_selec == 4:
+        muelle = "RNH25"
+    else:
+        muelle = "RNM68"
+    
+
+    if año_selec == 1:
         periodo = 2022
-    elif Interfaz.seleccion[1] == 2:
+    elif año_selec == 2:
         periodo = 2023
+    else:
+        periodo = año
     
     con = sqlite3.connect(".\datos\{}_{}".format(muelle, periodo))
     cur = con.cursor()

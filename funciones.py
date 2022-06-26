@@ -64,6 +64,7 @@ def muestra (tipo_selec, año_selec):
     plt.bar(grafx, grafy)
     plt.xlabel("Mes")
     plt.ylabel("Cantidad")
+    plt.title("Producción {} {}".format(muelle, periodo))
     plt.show()
 
 

@@ -70,13 +70,12 @@ class Muelles(tk.Frame):
         tk.Button(self, text="+1", background="#CECECE", height=2, width=2,
                   command=lambda: [datos.insertar_muelle("RNH30", funciones.año), self.actualiza_etiqueta("RNH30", 3)]).grid(row=3, column=1, padx=5, pady=5)             
         tk.Label(self, text="Muelles RNH30 el mes {} del {} = {}".format(funciones.mes, funciones.año ,datos.obtener_muelle("RNH30", funciones.año))).grid(row=3, column=2)
-        
         #RNH25
         tk.Label(self, text="RNH25").grid(row=4, column=0)
-        tk.Button(self, text="+1", background="#CECECE", height=2, width=2,
+        tk.Button(self, text="+1", background="#CECECE", height=2, width=2, 
                   command=lambda: [datos.insertar_muelle("RNH25", funciones.año), self.actualiza_etiqueta("RNH25", 4)]).grid(row=4, column=1, padx=5, pady=5)        
-        tk.Label(self, text="Muelles RNH25 el mes {} del {} = {}".format(funciones.mes, funciones.año ,datos.obtener_muelle("RNH25", funciones.año))).grid(row=4, column=2)
-
+        tk.Label(self, text="Muelles RNH25 el mes {} del {} = {}".format(funciones.mes, funciones.año, 
+                  datos.obtener_muelle("RNH25", funciones.año))).grid(row=4, column=2)
         tk.Button(self, text="Atrás", background="#CECECE",
                   command=lambda: master.switch_frame(Produccion)).grid(row=5, column=1, padx=5, pady=5)
     

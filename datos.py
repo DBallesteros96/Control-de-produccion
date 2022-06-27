@@ -5,16 +5,18 @@ import sqlite3
 
 def crear_tabla():
     """Ejecutar una vez para la creación"""
-    con = sqlite3.connect(".\datos\RNH25_2022")
+    con = sqlite3.connect(".\datos\RNH25_2023")
     cur = con.cursor()
-    cur.execute("""CREATE TABLE RNH25_2022 ('Mes' int, 'Cantidad' int)""")
+    cur.execute("""CREATE TABLE RNH25_2023 ('Mes' int, 'Cantidad' int)""")
     for x in range (1, 13):
-        cur.execute("""INSERT INTO RNH25_2022 VALUES ({}, 0)""".format(x))
+        cur.execute("""INSERT INTO RNH25_2023 VALUES ({}, 0)""".format(x))
     con.commit()
     con.close()
 
+#crear_tabla()
 
-def obtener(tipo, año):
+#Muelles
+def obtener_muelle(tipo, año):
     con = sqlite3.connect(".\datos\{}_{}".format(tipo, año))
     cur = con.cursor()
     cur.execute("""SELECT Cantidad FROM {}_{} WHERE Mes = {}""".format(tipo, año, funciones.mes))
@@ -23,7 +25,7 @@ def obtener(tipo, año):
     con.close()
     return cantidad
 
-def insertar(tipo, año):
+def insertar_muelle(tipo, año):
     con = sqlite3.connect(".\datos\{}_{}".format(tipo, año))
     cur = con.cursor()
     cur.execute("""SELECT Cantidad FROM {}_{} WHERE Mes = {}""".format(tipo, año, funciones.mes))
@@ -33,4 +35,27 @@ def insertar(tipo, año):
     cur.execute("""UPDATE {}_{} SET Cantidad = {} WHERE Mes = {}""".format(tipo, año, cantidad, funciones.mes))
     con.commit()
     con.close()
+
+#Puertas
+def obtener_puerta(año):
+    con = sqlite3.connect(".\datos\PInd800_{}".format(año))
+    cur = con.cursor()
+    cur.execute("""SELECT Cantidad FROM PInd800_{} WHERE Mes = {}""".format(año, funciones.mes))
+    cantidad = cur.fetchall()
+    cantidad = int(cantidad[0][0])
+    con.close()
+    return cantidad
+
+def insertar_puerta(año, cant):
+    con = sqlite3.connect(".\datos\PInd800_{}".format(año))
+    cur = con.cursor()
+    cur.execute("""SELECT Cantidad FROM PInd800_{} WHERE Mes = {}""".format(año, funciones.mes))
+    cantidad = cur.fetchall()
+    cantidad = int(cantidad[0][0])
+    cantidad += cant
+    cur.execute("""UPDATE PInd800_{} SET Cantidad = {} WHERE Mes = {}""".format(año, cantidad, funciones.mes))
+    con.commit()
+    con.close()
+
+
 

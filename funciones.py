@@ -1,6 +1,8 @@
 from datetime import datetime
 import matplotlib.pyplot as plt
 import datos, sqlite3, Interfaz
+import tkinter as tk
+import tkinter.messagebox
 
 date = str(datetime.now())
 
@@ -14,27 +16,29 @@ def muestra (tipo_selec, año_selec):
 
 
     if tipo_selec == 1:
-        muelle = "RNM68"
+        tipo = "RNM68"
     elif tipo_selec == 2:
-        muelle = "RNH68"
+        tipo = "RNH68"
     elif tipo_selec == 3:
-        muelle = "RNH30"
+        tipo = "RNH30"
     elif tipo_selec == 4:
-        muelle = "RNH25"
+        tipo = "RNH25"
+    elif tipo_selec == 5:
+        tipo = "PInd800"
     else:
-        muelle = "RNM68"
-    
+        tk.messagebox.showerror("Error", "Seleccione una pieza.")
 
     if año_selec == 1:
         periodo = 2022
     elif año_selec == 2:
         periodo = 2023
     else:
+        tk.messagebox.showinfo("Info", "Ningún año seleccionado. Se mostrará el año actual.")
         periodo = año
     
-    con = sqlite3.connect(".\datos\{}_{}".format(muelle, periodo))
+    con = sqlite3.connect(".\datos\{}_{}".format(tipo, periodo))
     cur = con.cursor()
-    cur.execute("""SELECT Cantidad FROM {}_{}""".format(muelle, periodo))
+    cur.execute("""SELECT Cantidad FROM {}_{}""".format(tipo, periodo))
     cantidad = cur.fetchall()
     for x in range (12):
         grafy.append(cantidad[x][0])
@@ -43,7 +47,7 @@ def muestra (tipo_selec, año_selec):
     plt.bar(grafx, grafy)
     plt.xlabel("Mes")
     plt.ylabel("Cantidad")
-    plt.title("Producción {} {}".format(muelle, periodo))
+    plt.title("Producción {} {}".format(tipo, periodo))
     plt.show()
 
 

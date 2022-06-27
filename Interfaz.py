@@ -4,7 +4,7 @@ import datos
 import tkinter.messagebox
 
 def seleccionar():
-    tipo = muelle_selec.get()
+    tipo = tipo_selec.get()
     año = año_selec.get()
 
 class Seleccionar():
@@ -12,7 +12,7 @@ class Seleccionar():
     año = 0
 
     def exe(self):
-        Seleccionar.tipo = muelle_selec.get()
+        Seleccionar.tipo = tipo_selec.get()
         Seleccionar.año = año_selec.get()
 
 class SampleApp(tk.Tk):
@@ -135,12 +135,12 @@ class Muelles_Stats(tk.Frame):
         tk.Label(self, text="Estadísticas Muelles",
                 font=('Helvetica', 18, "bold")).grid(row=0, column=1, padx=5, pady=5)
         tk.Label(self, text="Mecánicos").grid(row=1, column=0, padx=5, pady=5)
-        tk.Radiobutton(self, text=("RNM68"), value=1, variable=muelle_selec, command=seleccionar).grid(row=1, column=1, padx=5, pady=5)
+        tk.Radiobutton(self, text=("RNM68"), value=1, variable=tipo_selec, command=seleccionar).grid(row=1, column=1, padx=5, pady=5)
 
         tk.Label(self, text=("Hidráulicos")).grid(row=2, column=0, padx=5, pady=5)
-        tk.Radiobutton(self, text=("RNH68"), value=2, variable=muelle_selec, command=seleccionar).grid(row=2, column=1, padx=5, pady=5)
-        tk.Radiobutton(self, text=("RNH30"), value=3, variable=muelle_selec, command=seleccionar).grid(row=3, column=1, padx=5, pady=5)
-        tk.Radiobutton(self, text=("RNH25"), value=4, variable=muelle_selec, command=seleccionar).grid(row=3, column=1, padx=5, pady=5)
+        tk.Radiobutton(self, text=("RNH68"), value=2, variable=tipo_selec, command=seleccionar).grid(row=2, column=1, padx=5, pady=5)
+        tk.Radiobutton(self, text=("RNH30"), value=3, variable=tipo_selec, command=seleccionar).grid(row=3, column=1, padx=5, pady=5)
+        tk.Radiobutton(self, text=("RNH25"), value=4, variable=tipo_selec, command=seleccionar).grid(row=3, column=1, padx=5, pady=5)
 
         tk.Label(self, text=("Año")).grid(row=4, column=0, padx=5, pady=5)
         tk.Radiobutton(self, text=("2022"), value=1, variable=año_selec, command=seleccionar).grid(row=4, column=1, padx=5, pady=5)
@@ -149,7 +149,7 @@ class Muelles_Stats(tk.Frame):
         tk.Button(self, text="Volver a Inicio", background="#CECECE",
                   command=lambda: master.switch_frame(Inicio)).grid(row=6, column=1, padx=5, pady=5)
         tk.Button(self, text="Estadísticas", background="#CECECE",
-                  command= lambda: funciones.muestra(muelle_selec.get(), año_selec.get())).grid(row=6, column=2, padx=5, pady=5)
+                  command= lambda: funciones.muestra(tipo_selec.get(), año_selec.get())).grid(row=6, column=2, padx=5, pady=5)
 
 class Puertas_Stats(tk.Frame):
     def __init__(self, master):
@@ -157,10 +157,11 @@ class Puertas_Stats(tk.Frame):
 
         tk.Label(self, text="Estadísticas Puertas",
                 font=('Helvetica', 18, "bold")).grid(row=0, column=1, padx=5, pady=5)
-        tk.Radiobutton(self, text=("PInd800"), value=1, variable=muelle_selec, command=seleccionar).grid(row=1, column=1, padx=5, pady=5)
+        tk.Radiobutton(self, text=("PInd800"), value=5, variable=tipo_selec, command=seleccionar).grid(row=1, column=1, padx=5, pady=5)
         tk.Button(self, text="Volver a Inicio", background="#CECECE",
                   command=lambda: master.switch_frame(Inicio)).grid(row=3, column=1, padx=5, pady=5)
-        tk.Button(self, text="Estadísticas", background="#CECECE").grid(row=3, column=2, padx=5, pady=5)
+        tk.Button(self, text="Estadísticas", background="#CECECE", 
+                  command= lambda: funciones.muestra(tipo_selec.get(), año_selec.get())).grid(row=3, column=2, padx=5, pady=5)
         tk.Label(self, text=("Año")).grid(row=2, column=0, padx=5, pady=5)
         tk.Radiobutton(self, text=("2022"), value=1, variable=año_selec, command=seleccionar).grid(row=2, column=1, padx=5, pady=5)
         tk.Radiobutton(self, text=("2023"), value=2, variable=año_selec, command=seleccionar).grid(row=2, column=2, padx=5, pady=5)
@@ -169,7 +170,7 @@ class Puertas_Stats(tk.Frame):
 if __name__ == "__main__":
     app = SampleApp()
 
-    muelle_selec = tk.IntVar()
+    tipo_selec = tk.IntVar()
     año_selec = tk.IntVar()
 
     app.title("Control de Producción")

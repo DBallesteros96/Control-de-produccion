@@ -5,11 +5,11 @@ import sqlite3
 
 def crear_tabla():
     """Ejecutar una vez para la creación"""
-    con = sqlite3.connect(".\datos\RNH25_2023")
+    con = sqlite3.connect(".\datos\LNH30_2023")
     cur = con.cursor()
-    cur.execute("""CREATE TABLE RNH25_2023 ('Mes' int, 'Cantidad' int)""")
+    cur.execute("""CREATE TABLE LNH30_2023 ('Mes' int, 'Cantidad' int)""")
     for x in range (1, 13):
-        cur.execute("""INSERT INTO RNH25_2023 VALUES ({}, 0)""".format(x))
+        cur.execute("""INSERT INTO LNH30_2023 VALUES ({}, 0)""".format(x))
     con.commit()
     con.close()
 
@@ -56,6 +56,9 @@ def insertar_puerta(año, cant):
     cur.execute("""UPDATE PInd800_{} SET Cantidad = {} WHERE Mes = {}""".format(año, cantidad, funciones.mes))
     con.commit()
     con.close()
+
+def insertar_labio(tipo, año, cant):
+    pass
 
 
 

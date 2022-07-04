@@ -57,8 +57,26 @@ def insertar_puerta(año, cant):
     con.commit()
     con.close()
 
+def obtener_labio(tipo, año, cant):
+    con = sqlite3.connect(".\datos\{}_{}".format(tipo, año))
+    cur = con.cursor()
+    cur.execute("""SELECT Cantidad FROM {}_{} WHERE Mes = {}""".format(tipo, año, funciones.mes))
+    cantidad = cur.fetchall()
+    cantidad = int(cantidad[0][0])
+    con.close()
+    return cantidad
+
+
 def insertar_labio(tipo, año, cant):
-    pass
+    con = sqlite3.connect(".\datos\{}_{}".format(tipo, año))
+    cur = con.cursor()
+    cur.execute("""SELECT Cantidad FROM {}_{} WHERE Mes = {}""".format(tipo, año, funciones.mes))
+    cantidad = cur.fetchall()
+    cantidad = int(cantidad[0][0])
+    cantidad += cant
+    cur.execute("""UPDATE {}_{} SET Cantidad = {} WHERE Mes = {}""".format(tipo, año, cantidad, funciones.mes))
+    con.commit()
+    con.close()
 
 
 

@@ -14,7 +14,6 @@ def muestra (tipo_selec, año_selec):
     grafx = [1,2,3,4,5,6,7,8,9,10,11,12]
     grafy = []
 
-
     if tipo_selec == 1:
         tipo = "RNM68"
     elif tipo_selec == 2:
@@ -25,6 +24,12 @@ def muestra (tipo_selec, año_selec):
         tipo = "RNH25"
     elif tipo_selec == 5:
         tipo = "PInd800"
+    elif tipo_selec == 6:
+        tipo = "LNM6"
+    elif tipo_selec == 7:
+        tipo = "LNH25"
+    elif tipo_selec == "LNH30":
+        tipo = "LNH30"
     else:
         tk.messagebox.showerror("Error", "Seleccione una pieza.")
 

@@ -124,8 +124,8 @@ class Labios(tk.Frame):
         else:
             tk.messagebox.showinfo("Base de datos actualizada", 
             "{} labios {} añadidos a la base de datos".format(cant, tipo))
-            #Insertar en la base de datos del tipo de labio la cantidad
-
+            datos.insertar_labio(tipo, funciones.año, cant)
+        
 class Puertas(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
@@ -208,11 +208,16 @@ class Labios_Stats(tk.Frame):
         tk.Label(self, text="Estadísticas Labios",
                 font=('Helvetica', 18, "bold")).grid(row=0, column=1, padx=5, pady=5)
         tk.Radiobutton(self, text=("LNM6"), value=6, variable=tipo_selec, command=seleccionar).grid(row=1, column=1, padx=5, pady=5)
-        tk.Label(self, text=("Año")).grid(row=2, column=0, padx=5, pady=5)
-        tk.Radiobutton(self, text=("2022"), value=1, variable=año_selec, command=seleccionar).grid(row=2, column=1, padx=5, pady=5)
-        tk.Radiobutton(self, text=("2023"), value=2, variable=año_selec, command=seleccionar).grid(row=2, column=2, padx=5, pady=5)
+        tk.Radiobutton(self, text=("LNH25"), value=7, variable=tipo_selec, command=seleccionar).grid(row=2, column=1, padx=5, pady=5)
+        tk.Radiobutton(self, text=("LNH30"), value=8, variable=tipo_selec, command=seleccionar).grid(row=3, column=1, padx=5, pady=5)
+        
+        tk.Label(self, text=("Año")).grid(row=4, column=0, padx=5, pady=5)
+        tk.Radiobutton(self, text=("2022"), value=1, variable=año_selec, command=seleccionar).grid(row=4, column=1, padx=5, pady=5)
+        tk.Radiobutton(self, text=("2023"), value=2, variable=año_selec, command=seleccionar).grid(row=4, column=2, padx=5, pady=5)
+        tk.Button(self, text="Estadísticas", background="#CECECE", 
+                  command= lambda: funciones.muestra(tipo_selec.get(), año_selec.get())).grid(row=5, column=2, padx=5, pady=5)
         tk.Button(self, text="Volver a Inicio", background="#CECECE",
-                  command=lambda: master.switch_frame(Inicio)).grid(row=3, column=1, padx=5, pady=5)
+                  command=lambda: master.switch_frame(Inicio)).grid(row=5, column=1, padx=5, pady=5)
 
 
 if __name__ == "__main__":

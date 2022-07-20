@@ -28,7 +28,7 @@ def muestra (tipo_selec, año_selec):
         tipo = "LNM6"
     elif tipo_selec == 7:
         tipo = "LNH25"
-    elif tipo_selec == "LNH30":
+    elif tipo_selec == 8:
         tipo = "LNH30"
     else:
         tk.messagebox.showerror("Error", "Seleccione una pieza.")

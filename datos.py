@@ -1,6 +1,8 @@
 import funciones
 import sqlite3
 
+#borrar#
+
 #Cambiar las conexiones a la base de datos por un @decorador.
 
 def crear_tabla():
